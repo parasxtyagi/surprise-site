@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Special Surprise 🎁</title>
+  <meta name="description" content="A beautiful birthday surprise with love">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://images.pexels.com/photos/1024994/pexels-photo-1024994.jpeg?auto=compress&cs=tinysrgb&w=800" as="image">
+  <link rel="preload" href="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800" as="image">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/surprise.css">
+</head>
+<body>
+  <div class="page-loader" id="pageLoader">
+    <div class="gift-loader">
+      <div class="gift-box">
+        <div class="gift-lid"></div>
+        <div class="gift-body"></div>
+        <div class="gift-ribbon"></div>
+      </div>
+    </div>
+    <p>Preparing your surprise...</p>
+  </div>
+
+  <div class="surprise-background">
+    <div class="confetti-container" id="confettiContainer"></div>
+    <div class="floating-balloons">
+      <div class="balloon balloon-1">🎈</div>
+      <div class="balloon balloon-2">🎈</div>
+      <div class="balloon balloon-3">🎈</div>
+      <div class="balloon balloon-4">🎈</div>
+    </div>
+  </div>
+
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-logo">
+        <span class="logo-heart">🎁</span>
+        <span class="logo-text">Your Surprise</span>
+      </div>
+      <div class="nav-controls">
+        <button class="control-btn" id="musicBtn" onclick="toggleMusic()">
+          <span class="control-icon">🎵</span>
+          <span class="control-text">Music</span>
+        </button>
+        <button class="control-btn" onclick="shareSuprise()">
+          <span class="control-icon">📱</span>
+          <span class="control-text">Share</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content page-content">
+    <section class="surprise-hero">
+      <div class="container">
+        <div class="surprise-header animate-in">
+          <div class="birthday-animation">
+            <div class="cake">🎂</div>
+            <div class="candles">
+              <div class="candle">🕯️</div>
+              <div class="candle">🕯️</div>
+              <div class="candle">🕯️</div>
+            </div>
+          </div>
+          <h1 class="surprise-title">
+            <span class="title-line">Happy Birthday,</span>
+            <span class="title-line highlight">Beautiful! 🎂</span>
+          </h1>
+          <p class="surprise-subtitle">
+            From the one who loves you endlessly 💌
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <h2 class="section-title">Our Beautiful Memories 📸</h2>
+        <div class="gallery-container animate-in">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="memory-card">
+                  <div class="memory-image">
+                    <img data-src="https://images.pexels.com/photos/1024994/pexels-photo-1024994.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Our first adventure together" class="lazy-image">
+                  </div>
+                  <div class="memory-content">
+                    <h3>Our First Adventure</h3>
+                    <p>The day we explored the city together and laughed until our stomachs hurt</p>
+                    <div class="memory-date">March 15, 2023</div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="memory-card">
+                  <div class="memory-image">
+                    <img data-src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Romantic dinner date" class="lazy-image">
+                  </div>
+                  <div class="memory-content">
+                    <h3>Romantic Evening</h3>
+                    <p>Our candlelit dinner where you made me feel like the luckiest person alive</p>
+                    <div class="memory-date">June 20, 2023</div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="memory-card">
+                  <div class="memory-image">
+                    <img src="https://images.pexels.com/photos/1024995/pexels-photo-1024995.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Beach vacation memories" loading="lazy">
+                  </div>
+                  <div class="memory-content">
+                    <h3>Beach Vacation</h3>
+                    <p>Walking hand in hand on the beach, making memories to last a lifetime</p>
+                    <div class="memory-date">August 5, 2023</div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="memory-card">
+                  <div class="memory-image">
+                    <img src="https://images.pexels.com/photos/1024996/pexels-photo-1024996.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cozy home moments" loading="lazy">
+                  </div>
+                  <div class="memory-content">
+                    <h3>Cozy Moments</h3>
+                    <p>Those quiet Sunday mornings with coffee and endless conversations</p>
+                    <div class="memory-date">November 12, 2023</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="love-letter-section">
+      <div class="container">
+        <div class="love-letter">
+          <div class="letter-header">
+            <div class="letter-seal">💌</div>
+            <h2>A Message From My Heart</h2>
+          </div>
+          <div class="letter-content">
+            <div class="letter-text">
+              <p>My Dearest Love,</p>
+              <p>
+                Every day with you feels like a beautiful dream I never want to wake up from. 
+                You bring sunshine to my darkest days and make every moment feel magical.
+              </p>
+              <p>
+                Your smile lights up my world, your laughter is my favorite melody, 
+                and your love is the greatest gift I could ever receive.
+              </p>
+              <p>
+                On this special day, I want you to know that you are the most precious 
+                part of my life. You make me a better person, and I am grateful for 
+                every second we share together.
+              </p>
+              <p>
+                Happy Birthday, my love. Here's to many more years of adventures, 
+                laughter, and endless love together.
+              </p>
+              <div class="letter-signature">
+                <p>Forever yours,</p>
+                <p class="signature">💕 Your Loving Partner</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wishes-section">
+      <div class="container">
+        <h2 class="section-title">Birthday Wishes ✨</h2>
+        <div class="wishes-grid">
+          <div class="wish-card" data-aos="fade-up">
+            <div class="wish-icon">🌟</div>
+            <h3>May Your Dreams Come True</h3>
+            <p>Every wish you make, every dream you chase, I'll be right there cheering you on</p>
+          </div>
+          <div class="wish-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="wish-icon">🌺</div>
+            <h3>Endless Happiness</h3>
+            <p>May your days be filled with joy, laughter, and all the beautiful things life has to offer</p>
+          </div>
+          <div class="wish-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="wish-icon">💖</div>
+            <h3>Love That Grows Stronger</h3>
+            <p>With each passing day, my love for you grows deeper and stronger than ever before</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-message">
+      <div class="container">
+        <div class="final-card">
+          <div class="final-animation">
+            <div class="heart-burst">
+              <div class="heart">💖</div>
+              <div class="heart">💕</div>
+              <div class="heart">💗</div>
+              <div class="heart">💝</div>
+              <div class="heart">💘</div>
+            </div>
+          </div>
+          <h2 class="final-title">You Are My Everything 💖</h2>
+          <p class="final-text">
+            Thank you for being the most amazing person in my life. 
+            Your love, kindness, and beautiful soul inspire me every single day.
+          </p>
+          <div class="final-buttons">
+            <button class="btn btn-primary" onclick="celebrateAgain()">
+              <span>Celebrate Again</span>
+              <span class="btn-icon">🎉</span>
+            </button>
+            <button class="btn btn-secondary" onclick="goHome()">
+              <span>Back to Start</span>
+              <span class="btn-icon">🏠</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="virtual-gift-modal" id="virtualGiftModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Virtual Gift 🎁</h2>
+        <button class="close-btn" onclick="closeVirtualGift()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="gift-animation">
+          <div class="gift-box-3d">
+            <div class="gift-top"></div>
+            <div class="gift-bottom"></div>
+            <div class="gift-ribbon-h"></div>
+            <div class="gift-ribbon-v"></div>
+          </div>
+        </div>
+        <h3>A Virtual Hug 🤗</h3>
+        <p>Sending you the biggest, warmest hug filled with all my love!</p>
+      </div>
+    </div>
+  </div>
+
+  <audio id="finalMusic" loop>
+    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="./scripts/main.js"></script>
+  <script src="./scripts/surprise.js"></script>
+</body>
+</html>

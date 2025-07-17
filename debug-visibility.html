@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Visibility Debugger</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .debug-panel {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .status {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 4px;
+    }
+    .visible { background: #d4edda; color: #155724; }
+    .hidden { background: #f8d7da; color: #721c24; }
+    .warning { background: #fff3cd; color: #856404; }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover { background: #0056b3; }
+    .test-content {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      margin: 10px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="debug-panel">
+    <h2>🔍 Content Visibility Debugger</h2>
+    <button onclick="runDiagnostics()">Run Full Diagnostics</button>
+    <button onclick="forceShowContent()">Force Show All Content</button>
+    <button onclick="testEmojis()">Test Emoji Support</button>
+    <button onclick="checkCSS()">Check CSS Issues</button>
+    
+    <div id="results"></div>
+  </div>
+
+  <div class="debug-panel">
+    <h3>Test Content Area</h3>
+    <div class="test-content" id="testArea">
+      <div class="heart">💖</div>
+      <h1>Welcome to Our Love Story</h1>
+      <p>A magical journey through our memories and a special surprise waiting for you</p>
+      <button class="btn">Begin Our Story ✨</button>
+      <button class="btn">Skip to Surprise 🎁</button>
+    </div>
+  </div>
+
+  <script>
+    function runDiagnostics() {
+      const results = document.getElementById('results');
+      let report = '<h3>Diagnostic Results:</h3>';
+      
+      // Check if elements exist
+      const elements = [
+        { name: 'Hero Title', selector: '.hero-title, h1' },
+        { name: 'Hero Subtitle', selector: '.hero-subtitle, p' },
+        { name: 'Hero Buttons', selector: '.hero-buttons, .btn' },
+        { name: 'Heart Emojis', selector: '.heart, .floating-hearts' },
+        { name: 'Main Content', selector: '.main-content, main' }
+      ];
+      
+      elements.forEach(element => {
+        const found = document.querySelector(element.selector);
+        const status = found ? 'visible' : 'hidden';
+        const visibility = found ? getComputedStyle(found).visibility : 'N/A';
+        const opacity = found ? getComputedStyle(found).opacity : 'N/A';
+        const display = found ? getComputedStyle(found).display : 'N/A';
+        
+        report += `<div class="status ${status}">
+          <strong>${element.name}:</strong> ${found ? 'Found' : 'Not Found'}<br>
+          ${found ? `Visibility: ${visibility}, Opacity: ${opacity}, Display: ${display}` : ''}
+        </div>`;
+      });
+      
+      // Check for common issues
+      report += '<h4>Common Issues Check:</h4>';
+      
+      // Check for CSS conflicts
+      const hasHiddenCSS = Array.from(document.styleSheets).some(sheet => {
+        try {
+          return Array.from(sheet.cssRules).some(rule => 
+            rule.selectorText && rule.selectorText.includes('opacity: 0')
+          );
+        } catch (e) { return false; }
+      });
+      
+      report += `<div class="status ${hasHiddenCSS ? 'warning' : 'visible'}">
+        CSS Opacity Issues: ${hasHiddenCSS ? 'Detected' : 'None Found'}
+      </div>`;
+      
+      // Check JavaScript errors
+      const jsErrors = window.jsErrors || [];
+      report += `<div class="status ${jsErrors.length > 0 ? 'warning' : 'visible'}">
+        JavaScript Errors: ${jsErrors.length} found
+      </div>`;
+      
+      // Check emoji support
+      const emojiTest = document.createElement('div');
+      emojiTest.innerHTML = '💖';
+      document.body.appendChild(emojiTest);
+      const emojiSupport = emojiTest.offsetWidth > 0;
+      document.body.removeChild(emojiTest);
+      
+      report += `<div class="status ${emojiSupport ? 'visible' : 'warning'}">
+        Emoji Support: ${emojiSupport ? 'Working' : 'Issues Detected'}
+      </div>`;
+      
+      results.innerHTML = report;
+    }
+    
+    function forceShowContent() {
+      // Force show all potentially hidden elements
+      const selectors = [
+        '.main-content', '.hero-title', '.hero-subtitle', 
+        '.hero-buttons', '.btn', '.heart', '.floating-hearts'
+      ];
+      
+      selectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+          el.style.opacity = '1';
+          el.style.visibility = 'visible';
+          el.style.display = el.classList.contains('hero-buttons') ? 'flex' : 
+                            el.classList.contains('btn') ? 'inline-flex' : 'block';
+          el.classList.add('visible', 'loaded');
+        });
+      });
+      
+      alert('Content visibility forced! Check if elements are now visible.');
+    }
+    
+    function testEmojis() {
+      const testArea = document.getElementById('testArea');
+      const emojis = ['💖', '💕', '💗', '💝', '💘', '✨', '🎁'];
+      
+      testArea.innerHTML = '<h3>Emoji Test:</h3>';
+      emojis.forEach(emoji => {
+        const span = document.createElement('span');
+        span.innerHTML = emoji;
+        span.style.fontSize = '2rem';
+        span.style.margin = '10px';
+        testArea.appendChild(span);
+      });
+      
+      setTimeout(() => {
+        const emojiElements = testArea.querySelectorAll('span');
+        let working = 0;
+        emojiElements.forEach(el => {
+          if (el.offsetWidth > 0) working++;
+        });
+        
+        alert(`Emoji test: ${working}/${emojis.length} emojis displaying correctly`);
+      }, 100);
+    }
+    
+    function checkCSS() {
+      const issues = [];
+      
+      // Check for common CSS issues
+      const problematicRules = [
+        'opacity: 0',
+        'display: none',
+        'visibility: hidden',
+        'transform: translateY',
+        'z-index: -'
+      ];
+      
+      try {
+        Array.from(document.styleSheets).forEach(sheet => {
+          Array.from(sheet.cssRules).forEach(rule => {
+            if (rule.cssText) {
+              problematicRules.forEach(problem => {
+                if (rule.cssText.includes(problem)) {
+                  issues.push(`Found "${problem}" in: ${rule.selectorText}`);
+                }
+              });
+            }
+          });
+        });
+      } catch (e) {
+        issues.push('Cannot access some stylesheets (CORS)');
+      }
+      
+      const results = document.getElementById('results');
+      results.innerHTML = `<h3>CSS Issues Found:</h3>
+        ${issues.length > 0 ? 
+          issues.map(issue => `<div class="status warning">${issue}</div>`).join('') :
+          '<div class="status visible">No obvious CSS issues found</div>'
+        }`;
+    }
+    
+    // Capture JavaScript errors
+    window.jsErrors = [];
+    window.addEventListener('error', (e) => {
+      window.jsErrors.push(e.message);
+    });
+    
+    // Auto-run diagnostics on load
+    window.addEventListener('load', () => {
+      setTimeout(runDiagnostics, 1000);
+    });
+  </script>
+</body>
+</html>

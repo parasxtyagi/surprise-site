@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story Quiz 💑</title>
+  <meta name="description" content="Test your knowledge about our love story">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/story.css">
+</head>
+<body>
+  <div class="page-loader" id="pageLoader">
+    <div class="heart-loader">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
+    <p>Loading our memories...</p>
+  </div>
+
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-logo">
+        <span class="logo-heart">💕</span>
+        <span class="logo-text">Our Story</span>
+      </div>
+      <div class="nav-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span class="progress-text" id="progressText">Question 1 of 5</span>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content page-content">
+    <section class="story-section">
+      <div class="story-container">
+        <div class="story-card animate-in" id="storyCard">
+          <div class="question-header">
+            <div class="question-number" id="questionNumber">01</div>
+            <div class="question-icon" id="questionIcon">💭</div>
+          </div>
+          
+          <div class="question-content">
+            <h2 class="question-title" id="questionTitle">How did we meet first time?</h2>
+            <div class="question-image" id="questionImage">
+              <div class="memory-illustration">
+                <div class="memory-card">
+                  <div class="memory-icon">🎮</div>
+                  <div class="memory-details">
+                    <h3>Gaming Together</h3>
+                    <p>Where our story began</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="options-container">
+            <div class="options" id="options">
+              <button class="option-btn" onclick="selectAnswer('correct', 'game')">
+                <span class="option-icon">🎮</span>
+                <span class="option-text">In Free Fire lobby</span>
+                <span class="option-check">✓</span>
+              </button>
+              <button class="option-btn" onclick="selectAnswer('wrong', 'coding')">
+                <span class="option-icon">🤓</span>
+                <span class="option-text">At a coding bootcamp</span>
+                <span class="option-check">✗</span>
+              </button>
+              <button class="option-btn" onclick="selectAnswer('wrong', 'math')">
+                <span class="option-icon">📐</span>
+                <span class="option-text">In a math class</span>
+                <span class="option-check">✗</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-overlay" id="feedbackOverlay">
+          <div class="feedback-card">
+            <div class="feedback-icon" id="feedbackIcon">🎉</div>
+            <h3 class="feedback-title" id="feedbackTitle">Correct!</h3>
+            <p class="feedback-text" id="feedbackText">That's right! We met in the Free Fire lobby and it was love at first sight... well, first game! 💕</p>
+            <div class="feedback-buttons">
+              <button class="btn btn-primary" onclick="nextQuestion()">
+                <span>Next Question</span>
+                <span class="btn-icon">➡️</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="story-background">
+      <div class="floating-elements">
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">💗</div>
+        <div class="floating-heart">💝</div>
+      </div>
+    </div>
+  </main>
+
+  <div class="completion-modal" id="completionModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Story Complete! 🎉</h2>
+        <p>You know our story so well! Now let's play a game to unlock your surprise.</p>
+      </div>
+      <div class="modal-body">
+        <div class="score-display">
+          <div class="score-circle">
+            <span class="score-number" id="finalScore">5</span>
+            <span class="score-total">/5</span>
+          </div>
+          <p class="score-text">Perfect Score!</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="goToGame()">
+          <span>Play Heart Game</span>
+          <span class="btn-icon">🎮</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="storyMusic" loop>
+    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="./scripts/main.js"></script>
+  <script src="./scripts/story.js"></script>
+</body>
+</html>

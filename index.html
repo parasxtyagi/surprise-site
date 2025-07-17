@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Our Love Story 💕</title>
+  <meta name="description" content="A beautiful interactive love story and birthday surprise">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://images.pexels.com/photos/1024994/pexels-photo-1024994.jpeg?auto=compress&cs=tinysrgb&w=400" as="image">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/index.css">
+</head>
+<body>
+  <div class="page-loader" id="pageLoader">
+    <div class="heart-loader">
+      <div class="heart">💖</div>
+      <div class="heart">💕</div>
+      <div class="heart">💗</div>
+    </div>
+    <p>Loading our love story...</p>
+  </div>
+
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-logo">
+        <span class="logo-heart">💕</span>
+        <span class="logo-text">Our Story</span>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="story.html" class="nav-link">Our Story</a>
+        <a href="game.html" class="nav-link">Heart Game</a>
+        <a href="surprise.html" class="nav-link">Surprise</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="main-content page-content" id="main-content">
+    <section class="hero">
+      <div class="hero-background">
+        <div class="floating-hearts">
+          <div class="heart heart-1 floating-element" style="display: block; opacity: 1;">💖</div>
+          <div class="heart heart-2 floating-element" style="display: block; opacity: 1;">💕</div>
+          <div class="heart heart-3 floating-element" style="display: block; opacity: 1;">💗</div>
+          <div class="heart heart-4 floating-element" style="display: block; opacity: 1;">💝</div>
+          <div class="heart heart-5 floating-element" style="display: block; opacity: 1;">💘</div>
+        </div>
+      </div>
+      
+      <div class="hero-content">
+        <div class="hero-text animate-in visible" style="opacity: 1; transform: translateY(0);">
+          <h1 class="hero-title" style="display: block; opacity: 1;">
+            <span class="title-line">Welcome to</span>
+            <span class="title-line highlight">Our Love Story</span>
+          </h1>
+          <p class="hero-subtitle" style="display: block; opacity: 1;">
+            A magical journey through our memories and a special surprise waiting for you
+          </p>
+          <div class="hero-buttons" style="display: flex; opacity: 1;">
+            <button class="btn btn-primary" onclick="startJourney()" style="display: inline-flex; opacity: 1;">
+              <span>Begin Our Story</span>
+              <span class="btn-icon">✨</span>
+            </button>
+            <button class="btn btn-secondary" onclick="skipToSurprise()" style="display: inline-flex; opacity: 1;">
+              <span>Skip to Surprise</span>
+              <span class="btn-icon">🎁</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="hero-illustration animate-in visible" style="opacity: 1; transform: translateY(0);">
+          <div class="couple-silhouette">
+            <div class="person person-1">
+              <div class="head"></div>
+              <div class="body"></div>
+            </div>
+            <div class="person person-2">
+              <div class="head"></div>
+              <div class="body"></div>
+            </div>
+            <div class="connecting-heart">💕</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">What Awaits You</h2>
+        <div class="features-grid">
+          <div class="feature-card animate-in ripple">
+            <div class="feature-icon">📖</div>
+            <h3>Our Story</h3>
+            <p>Interactive quiz about how we met and our journey together</p>
+          </div>
+          <div class="feature-card animate-in ripple">
+            <div class="feature-icon">🎮</div>
+            <h3>Heart Game</h3>
+            <p>Catch falling hearts in a fun mini-game to unlock your surprise</p>
+          </div>
+          <div class="feature-card animate-in ripple">
+            <div class="feature-icon">🎁</div>
+            <h3>Special Surprise</h3>
+            <p>A beautiful photo gallery and heartfelt message just for you</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Made with 💕 for someone special</p>
+    </div>
+  </footer>
+
+  <script src="./scripts/main.js"></script>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>

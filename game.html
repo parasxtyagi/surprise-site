@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catch My Heart 💘</title>
+  <meta name="description" content="Catch falling hearts to unlock your surprise">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/game.css">
+</head>
+<body>
+  <div class="page-loader" id="pageLoader">
+    <div class="heart-loader">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
+    <p>Loading the game...</p>
+  </div>
+
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-logo">
+        <span class="logo-heart">💕</span>
+        <span class="logo-text">Heart Game</span>
+      </div>
+      <div class="nav-controls">
+        <button class="control-btn" id="pauseBtn" onclick="togglePause()">
+          <span class="control-icon">⏸️</span>
+          <span class="control-text">Pause</span>
+        </button>
+        <button class="control-btn" id="muteBtn" onclick="toggleMute()">
+          <span class="control-icon">🔊</span>
+          <span class="control-text">Mute</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content page-content">
+    <section class="game-section">
+      <div class="game-container">
+        <div class="game-header animate-in">
+          <h2 class="game-title">Catch My Heart 💘</h2>
+          <p class="game-subtitle">Catch all 5 hearts to unlock your surprise!</p>
+        </div>
+
+        <div class="game-stats animate-in">
+          <div class="stat-card ripple">
+            <div class="stat-icon">💖</div>
+            <div class="stat-info">
+              <span class="stat-label">Hearts Collected</span>
+              <span class="stat-value" id="heartsCollected">0</span>
+              <span class="stat-total">/5</span>
+            </div>
+          </div>
+          <div class="stat-card ripple">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-info">
+              <span class="stat-label">Time</span>
+              <span class="stat-value" id="gameTime">00:00</span>
+            </div>
+          </div>
+          <div class="stat-card ripple">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-info">
+              <span class="stat-label">Score</span>
+              <span class="stat-value" id="gameScore">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-area-container">
+          <div class="game-area" id="gameArea">
+            <div class="game-instructions" id="gameInstructions">
+              <div class="instruction-card">
+                <h3>How to Play</h3>
+                <div class="instruction-list">
+                  <div class="instruction-item">
+                    <span class="instruction-icon">👆</span>
+                    <span>Click or tap falling hearts to catch them</span>
+                  </div>
+                  <div class="instruction-item">
+                    <span class="instruction-icon">💖</span>
+                    <span>Collect all 5 hearts to win</span>
+                  </div>
+                  <div class="instruction-item">
+                    <span class="instruction-icon">⚡</span>
+                    <span>Be quick! Hearts disappear if you miss them</span>
+                  </div>
+                </div>
+                <button class="btn btn-primary" onclick="startGame()">
+                  <span>Start Game</span>
+                  <span class="btn-icon">🎮</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="game-cursor" id="gameCursor">💕</div>
+          </div>
+        </div>
+
+        <div class="game-effects">
+          <div class="particle-system" id="particleSystem"></div>
+          <div class="combo-display" id="comboDisplay">
+            <span class="combo-text">Perfect!</span>
+            <span class="combo-multiplier">x2</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="game-over-modal" id="gameOverModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="victory-animation">
+          <div class="trophy">🏆</div>
+          <div class="celebration-hearts">
+            <div class="heart">💖</div>
+            <div class="heart">💕</div>
+            <div class="heart">💗</div>
+            <div class="heart">💝</div>
+            <div class="heart">💘</div>
+          </div>
+        </div>
+        <h2>Congratulations! 🎉</h2>
+        <p>You've collected all the hearts! Your surprise awaits...</p>
+      </div>
+      <div class="modal-body">
+        <div class="final-stats">
+          <div class="final-stat">
+            <span class="stat-label">Hearts Collected</span>
+            <span class="stat-value" id="finalHearts">5/5</span>
+          </div>
+          <div class="final-stat">
+            <span class="stat-label">Time Taken</span>
+            <span class="stat-value" id="finalTime">01:23</span>
+          </div>
+          <div class="final-stat">
+            <span class="stat-label">Final Score</span>
+            <span class="stat-value" id="finalScore">1250</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="goToSurprise()">
+          <span>Get My Surprise</span>
+          <span class="btn-icon">🎁</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pause-modal" id="pauseModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Game Paused ⏸️</h2>
+      </div>
+      <div class="modal-body">
+        <p>Take a break and come back when you're ready!</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="resumeGame()">
+          <span>Resume Game</span>
+          <span class="btn-icon">▶️</span>
+        </button>
+        <button class="btn btn-secondary" onclick="restartGame()">
+          <span>Restart</span>
+          <span class="btn-icon">🔄</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="gameMusic" loop>
+    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="./scripts/main.js"></script>
+  <script src="./scripts/game.js"></script>
+</body>
+</html>
